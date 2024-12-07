@@ -4,21 +4,15 @@ import React, { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { FETCH_LOCATIONS } from "@/app/graphql";
 import { Label } from "@/components/ui/label"; // Import the Shadcn Label component
-
-type Location = {
-  id: number;
-  location: string;
-  state: string;
-  postcode: number;
-};
+import { AusLocation } from "@/app/interface";
 
 interface ISelectOption {
-  onSelectedOption: (data: Location) => void;
+  onSelectedOption: (data: AusLocation) => void;
 }
 
 export default function Autocomplete({ onSelectedOption }: ISelectOption) {
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState<Location[]>([]);
+  const [options, setOptions] = useState<AusLocation[]>([]);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
 

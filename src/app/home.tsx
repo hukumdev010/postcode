@@ -16,16 +16,17 @@ import { Button } from "@/components/ui/button";
 import Sidebar from "./sidebar";
 import Navigation from "./navigation";
 import SelectDropDown from "@/components/selectdropdown/selectdropdown";
+import toast from "react-hot-toast";
+import { AusLocation } from "./interface";
 
 const Home = () => {
-  const [selectedOption, setSelectedOption] = React.useState({});
+  const [selectedOption, setSelectedOption] =
+    React.useState<AusLocation | null>(null);
 
   const formSchema = z.object({
     postcode: z.string().min(2),
     state: z.string().min(2),
   });
-
-  console.log("selectedOption", selectedOption);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,7 +37,27 @@ const Home = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("hello this si thevalues, ", values);
+    if (!selectedOption || !selectedOption.location) {
+      toast.error("Please select a suburb");
+      return;
+    }
+    if (!values.postcode || !values.state) {
+      toast.error("Please enter a postcode and state");
+      return;
+    }
+    if (selectedOption.postcode !== +values.postcode) {
+      toast.error(
+        `The postcode ${values.postcode} does not match the suburb ${selectedOption.location}.`
+      );
+      return;
+    }
+    if (selectedOption.state !== values.state) {
+      toast.error(
+        `The suburb  ${selectedOption.location} does not exist in the state ${values.state}.`
+      );
+      return;
+    }
+    toast.success("Address validated successfully");
   }
 
   console.log("errors", form.formState.errors);
