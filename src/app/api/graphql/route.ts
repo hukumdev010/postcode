@@ -46,8 +46,7 @@ const resolvers = {
           postcode: loc.postcode,
           state: loc.state,
         }));
-      } catch (error) {
-        console.error('Error fetching locations:', error);
+      } catch {
         return [];
       }
     }

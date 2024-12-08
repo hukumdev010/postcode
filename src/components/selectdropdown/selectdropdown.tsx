@@ -5,6 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import { FETCH_LOCATIONS } from "@/app/graphql";
 import { Label } from "@/components/ui/label"; // Import the Shadcn Label component
 import { AusLocation } from "@/app/interface";
+import toast from "react-hot-toast";
 
 interface ISelectOption {
   onSelectedOption: (data: AusLocation) => void;
@@ -23,7 +24,7 @@ export default function Autocomplete({ onSelectedOption }: ISelectOption) {
       setOpenDropdown(data.fetchLocations.length > 0);
     },
     onError: (error) => {
-      console.error("Error fetching locations:", error);
+      toast.error(error.message);
       setLoading(false);
     },
   });

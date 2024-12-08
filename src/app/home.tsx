@@ -59,8 +59,6 @@ const Home = () => {
     }
     toast.success("Address validated successfully");
   }
-
-  console.log("errors", form.formState.errors);
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
