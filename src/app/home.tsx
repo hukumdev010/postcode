@@ -18,6 +18,7 @@ import Navigation from "./navigation";
 import SelectDropDown from "@/components/selectdropdown/selectdropdown";
 import toast from "react-hot-toast";
 import { AusLocation } from "./interface";
+import { Info } from "lucide-react";
 
 const Home = () => {
   const [selectedOption, setSelectedOption] =
@@ -90,7 +91,6 @@ const Home = () => {
                   <SelectDropDown
                     onSelectedOption={(data) => setSelectedOption(data)}
                   />
-
                   {/* Postcode Field */}
                   <FormField
                     control={form.control}
@@ -110,11 +110,22 @@ const Home = () => {
                             {...field}
                           />
                         </FormControl>
+                        {selectedOption && selectedOption.postcode && (
+                          <div className="flex items-center gap-2">
+                            <Info className="text-sm text-gray-500" size={20} />{" "}
+                            <p>
+                              Hint - Postcode start with{" "}
+                              {selectedOption.postcode.toString().charAt(0)} and
+                              ends with{" "}
+                              {selectedOption.postcode.toString().slice(-1)} of
+                              the above suburb
+                            </p>
+                          </div>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
                   {/* State Field */}
                   <FormField
                     control={form.control}
@@ -134,11 +145,22 @@ const Home = () => {
                             {...field}
                           />
                         </FormControl>
+                        {selectedOption && selectedOption.state && (
+                          <div className="flex items-center gap-2">
+                            <Info className="text-sm text-gray-500" size={20} />{" "}
+                            <p>
+                              Hint - State start with{" "}
+                              {selectedOption.state.toString().charAt(0)} word
+                              and ends with{" "}
+                              {selectedOption.state.toString().slice(-1)} word
+                              of the above suburb
+                            </p>
+                          </div>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
                   {/* Submit Button */}
                   <Button
                     type="submit"
