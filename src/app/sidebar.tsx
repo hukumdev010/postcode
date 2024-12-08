@@ -13,6 +13,13 @@ const Sidebar = () => {
         lawyers, Lawpath empowers you to take control of your legal matters with
         ease and confidence.
       </div>
+      <div className="mt-8 text-center text-sm text-gray-500 leading-relaxed">
+        Our address validation application leverages the Australian Postcode API
+        to ensure accurate suburb, state, and postcode information. By providing
+        reliable address data, it helps streamline legal processes, minimize
+        errors, and improve overall data integrity, all while adhering to
+        Australia&apos;s postal standards.
+      </div>
     </div>
   );
 };
