@@ -18,10 +18,10 @@ Copy .env.example to .env
 and Add auth key to the env
 
 ```bash
-cp .env.example .env
+cp env.example .env
 ```
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
