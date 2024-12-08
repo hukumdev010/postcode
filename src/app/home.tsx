@@ -60,6 +60,7 @@ const Home = () => {
     }
     toast.success("Address validated successfully");
   }
+
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
